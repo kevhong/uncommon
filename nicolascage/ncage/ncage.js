@@ -90,7 +90,6 @@ function main() {
                   data: JSON.stringify({"link":item.src}),
                   contentType: 'application/json;charset=UTF-8',
                   dataType: "json",
-                  //async: false,
                   success: function(resultData) {
                     console.log(resultData);
                     console.log(resultData.link);
@@ -100,7 +99,8 @@ function main() {
                     self.setImage(item, resultData.link, counter)
                   },
                   error: function(error){
-
+                    console.log(item.src);
+                    self.setImage(item, item.src, counter);
                   }
                 });
 
@@ -109,19 +109,15 @@ function main() {
               //  self.setImg(item, lstImgs);
                 //self.setRandomImg(item, lstImgs, counter);
             },
-            //Set a random image from lstImgs to item
+            //Set
             setImage: function (item, image, counter) {
                 var h = $(item).height();
 
                 var w = $(item).width();
 
-                console.log("here");
-
                 $(item).css('width', w + 'px').css('height', h + 'px');
         //        $(item).attr('src', lstImgs[Math.floor(Math.random() * lstImgs.length)]);
                 $(item).attr('src', image);
-                console.log(h);
-                console.log(w);
             },
 
         /*    setImg : function (item, listImgs)) {
