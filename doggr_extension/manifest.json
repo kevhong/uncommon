@@ -1,0 +1,28 @@
+{
+   "background": {
+      "scripts": [ "ncage/bg.js" ]
+   },
+   "content_scripts": [ {
+      "all_frames": false,
+      "js": [ "lib/jq/jquery-2.1.1.min.js", "lib/ga/ga.js", "ncage/ncage.js" ],
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_start"
+   } ],
+   "default_locale": "en",
+   "description": "The Future of Dogs",
+   "icons": {
+      "128": "ncage/dog128.png",
+      "16": "ncage/geodog16.png"
+   },
+   "manifest_version": 2,
+   "name": "Doggr",
+   "options_page": "ncage/options/options.html",
+   "options_ui": {
+      "chrome_style": true,
+      "page": "ncage/options/options.html"
+   },
+   "permissions": [ "storage", "tabs", "contextMenus", "webRequest", "\u003Call_urls>", "http://*/*", "https://*/*", "webNavigation", "webRequestBlocking", "cookies", "storage", "unlimitedStorage" ],
+   "short_name": "Doggr",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.00"
+}
