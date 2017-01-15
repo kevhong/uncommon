@@ -142,7 +142,7 @@ function main() {
         //Run on jQuery ready
         $(function () {
 
-            self.handleImages(self.nCageImgs, 5);
+            self.handleImages(self.nCageImgs, 50);
 
         });
 
