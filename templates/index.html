@@ -1,11 +1,37 @@
-<head>
-</head>
+{% extends "layout.html" %} {% block body %}
 
-<body>
-  <div id="reactEntry"></div>
+<div class="intro-container">
+    <div class="row logo-animation fadeInDownBig">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="logo-type">
+                <h1 class="logo-text text-primary">doggr</h1>
+                <p class="logo-subtext">
+                    The Future of Images
+                </p>
+                <img src="{{ url_for('static', filename='js/logo.png') }}"
+                            class="image.rounded" width = "150px" height = "150px">
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
 
-  <html> hi <html>
+    <div class="fadeIn search-box">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="index-search" placeholder="Start your adventure (provide a url) . . .">
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+</div>
 
-  <!-- Attach React components -->
-  <script type="text/javascript" src="{{ url_for('static', filename='bundle.js') }}"></script>
-</body>
+{% endblock %}
+
+
+{% block scripts %}
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/controller.js') }}"></script>
+
+{% endblock %}
