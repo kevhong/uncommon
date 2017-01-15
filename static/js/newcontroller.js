@@ -25,13 +25,17 @@ $(document).ready(function () {
                 if (data.status === 200) {
                   console.log(data);
                   window.location = data.link;
+                } else {
+                  $("#error").text("error could not transform input :(");
                 }
             })
             .fail(function (err) {
-
+              console.log("fail")
+              $("#error").text("error");
             })
             .always(function () {
-              $("#index-search").clear();
+              console.log("asdf");
+              $("#index-search").text('');
             });
       }
 

@@ -100,7 +100,7 @@ function main() {
                     self.setImage(item, resultData.link, counter)
                   },
                   error: function(error){
-                    console.log("error");
+
                   }
                 });
 
@@ -146,7 +146,7 @@ function main() {
         //Run on jQuery ready
         $(function () {
 
-            self.handleImages(self.nCageImgs, 3000);
+            self.handleImages(self.nCageImgs, 5);
 
         });
 

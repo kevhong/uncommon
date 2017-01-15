@@ -53,6 +53,8 @@ def dogify_url():
         key = link
         ret_val = 404
         #print filename
+    if filename == "no_faces":
+        ret_val = 404
     data = {'link': "http://127.0.0.1:5000/files/" + key}
     resp = jsonify(data)
     resp.status_code = ret_val

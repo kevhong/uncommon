@@ -107,14 +107,18 @@ def overlay_face(imagePath, imageOverlay = os.path.join(data_source, 'overlays',
         image[y1:y2, x1:x2] = dst
 
     res = ""
-    if test:
-        res = os.path.join(data_source,
-            'test_output', 'output.jpg')
-        cv2.imwrite(res, image)
-    else:
-        res = os.path.join('data', 'created', ret + ".jpg")
-        cv2.imwrite(res, image)
-    return res
+    print imagePath
+    os.remove(imagePath)
+    if len(faces) > 0:
+        if test:
+            res = os.path.join(data_source,
+                'test_output', 'output.jpg')
+            cv2.imwrite(res, image)
+        else:
+            res = os.path.join('data', 'created', ret + ".jpg")
+            cv2.imwrite(res, image)
+        return res
+    return "no_faces"
 
 
 if __name__ == '__main__':
