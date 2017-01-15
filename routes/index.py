@@ -10,6 +10,7 @@ def index():
 
 @routes.route('/test', methods = ['GET'])
 def funct():
+    
     data = {
             "status": "ok",
             "name": "kevin"
