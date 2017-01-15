@@ -9,8 +9,8 @@
                 <p class="logo-subtext">
                     The Future of Images
                 </p>
-                <img src="{{ url_for('static', filename='js/logo.png') }}"
-                            class="image.rounded" width = "150px" height = "150px">
+                <!-- <img src="{{ url_for('static', filename='js/logo.png') }}"
+                            class="image.rounded" width = "150px" height = "150px"> -->
             </div>
         </div>
         <div class="col-lg-1"></div>
@@ -23,6 +23,7 @@
                 <input type="text" class="form-control" id="index-search" placeholder="Start your adventure (provide a url) . . .">
             </div>
             <div class="col-lg-1"></div>
+            <div id="error"></div>
         </div>
     </div>
 </div>
@@ -32,6 +33,6 @@
 
 {% block scripts %}
 
-<script type="text/javascript" src="{{ url_for('static', filename='js/controller.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/newcontroller.js') }}"></script>
 
 {% endblock %}

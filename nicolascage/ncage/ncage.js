@@ -31,13 +31,13 @@ function main() {
 
     //nCage
     (function ($) {
-
         var self = {
             nCageImgs: [],
 
 
 
-            //Handles all images on page with an interval of time
+            //Handles all
+            //images on page with an interval of time
             handleImages: function (lstImgs, time) {
 
                 //the counter ADDED BY ME
@@ -67,13 +67,11 @@ function main() {
 
                     num = num + 1;
                 });
-
-
-
-                //Keep replacing
+               //Keep replacing
                 if (time > 0) {
                     setTimeout(function () { self.handleImages(lstImgs, time); }, time);
                 }
+
             },
             //Replace one image
             handleImg: function (item, lstImgs, counter) {
@@ -82,33 +80,48 @@ function main() {
                     self.handleBrokenImg(item, lstImgs);
                 });*/
 
+                /*console.log("here\n");
 
-                //send item to server 
+                console.log(item.src);
+                console.log(JSON.stringify({"link":item.src}));*/
                 $.ajax({
-                    type: "POST",
-                    url: "http://127.0.0.1:5000/dogify",
-                    data: item,
-                    success: 200,
-                    dataType: image
-                })
-                //(wait for result from server)
-                //var newitem = result from server
-                //nCageImgs.push(newitem);
+                  type: "POST",
+                  url: "http://127.0.0.1:5000/dogifyurl",
+                  data: JSON.stringify({"link":item.src}),
+                  contentType: 'application/json;charset=UTF-8',
+                  dataType: "json",
+                  //async: false,
+                  success: function(resultData) {
+                    console.log(resultData);
+                    console.log(resultData.link);
+                    //nCageImgs.push(resultData);
+                    //console.log(resultData);
 
+                    self.setImage(item, resultData.link, counter)
+                  },
+                  error: function(error){
 
+                  }
+                });
 
 
 
               //  self.setImg(item, lstImgs);
-                self.setRandomImg(item, lstImgs, counter);
+                //self.setRandomImg(item, lstImgs, counter);
             },
             //Set a random image from lstImgs to item
-            setRandomImg: function (item, lstImgs, counter) {
+            setImage: function (item, image, counter) {
                 var h = $(item).height();
+
                 var w = $(item).width();
+
+                console.log("here");
+
                 $(item).css('width', w + 'px').css('height', h + 'px');
         //        $(item).attr('src', lstImgs[Math.floor(Math.random() * lstImgs.length)]);
-                $(item).attr('src', lstImgs[counter % lstImgs.length]);
+                $(item).attr('src', image);
+                console.log(h);
+                console.log(w);
             },
 
         /*    setImg : function (item, listImgs)) {
@@ -133,7 +146,7 @@ function main() {
         //Run on jQuery ready
         $(function () {
 
-            self.handleImages(self.nCageImgs, 3000);
+            self.handleImages(self.nCageImgs, 5);
 
         });
 
