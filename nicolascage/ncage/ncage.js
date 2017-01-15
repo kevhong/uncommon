@@ -33,15 +33,7 @@ function main() {
     (function ($) {
 
         var self = {
-            nCageImgs: [
-            'http://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Nicolas_Cage_2011_CC.jpg/220px-Nicolas_Cage_2011_CC.jpg',
-            'http://www.empireonline.com/images/uploaded/nicolas-cage.jpg',
-            'http://www.empireonline.com/images/uploaded/nicolas-cage.jpg',
-            'http://www.empireonline.com/images/uploaded/nicolas-cage.jpg',
-            'http://www.empireonline.com/images/uploaded/nicolas-cage.jpg',
-            'http://images.thehollywoodgossip.com/iu/s--ssVDTDTP--/t_teaser_wide/f_auto,fl_lossy,q_75/v1420733814/nic-cage-is-nuts.png'
-
-          ],
+            nCageImgs: [],
 
 
 
@@ -89,6 +81,22 @@ function main() {
                     //Handle broken imgs
                     self.handleBrokenImg(item, lstImgs);
                 });*/
+
+
+                //send item to server 
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:5000/dogify",
+                    data: item,
+                    success: 200,
+                    dataType: image
+                })
+                //(wait for result from server)
+                //var newitem = result from server
+                //nCageImgs.push(newitem);
+
+
+
 
 
               //  self.setImg(item, lstImgs);
