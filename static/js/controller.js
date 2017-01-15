@@ -1,9 +1,3 @@
-/**
- * Controller functions for index.html and find.html
- *
- *
- */
-
 // KEY_ENTER = 13;
 // STATES = {
 //     on: { icon: 'glyphicon glyphicon-check' },
