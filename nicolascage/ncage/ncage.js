@@ -28,11 +28,6 @@ function track(active) {
 
 //Content script, image replacer
 function main() {
-
-    //nCage
-    (function ($) {
-
-        var self = {
             //Handles all images on page with an interval of time
             handleImages: function () {
 
