@@ -4,12 +4,19 @@ import os
 data_source = os.path.join("..", "data")
 
 def overlay_face(imagePath, imageOverlay =
-    os.path.join(data_source, 'overlays', 'dog_face_tongue.png')):
+    os.path.join(data_source, 'overlays', 'dog_face_tongue.png'),
+    test=True):
 
-    face_cascade = cv2.CascadeClassifier(
-        os.path.join(data_source,
-        'haarcascades',
-        'haarcascade_frontalface_default.xml'))
+    if test:
+        face_cascade = cv2.CascadeClassifier(
+            os.path.join(data_source,
+            'haarcascades',
+            'haarcascade_frontalface_default.xml'))
+    else:
+        face_cascade = cv2.CascadeClassifier(
+            os.path.join('data',
+            'haarcascades',
+            'haarcascade_frontalface_default.xml'))
 
     overlay = cv2.imread(imageOverlay, -1)
     # Create the mask for the overlay
@@ -101,9 +108,15 @@ def overlay_face(imagePath, imageOverlay =
         # place the joined image, saved to dst back over the original image
         image[y1:y2, x1:x2] = dst
 
-
-    cv2.imwrite(os.path.join(data_source,
-        'test_output', 'output.jpg'), image)
+    res = ""
+    if test:
+        res = os.path.join(data_source,
+            'test_output', 'output.jpg')
+        cv2.imwrite(res, image)
+    else:
+        res = os.path.join('data', 'created', 'out.jpg')
+        cv2.imwrite(res, image)
+    return res
 
 
 if __name__ == '__main__':
