@@ -1,38 +1,38 @@
 {
    "appDesc": {
       "description": "The description of the application, displayed in the web store.",
-      "message": "Replaces all images on all pages to Nicolas Cage."
+      "message": "The Future of Images"
    },
    "appName": {
       "description": "The title of the application, displayed in the web store.",
-      "message": "nCage"
+      "message": "Doggr"
    },
    "contextMenuActivate": {
       "description": "The option in context menu to activate the extension",
-      "message": "nCage Activate"
+      "message": "Doggr Activate"
    },
    "contextMenuInactivate": {
       "description": "The option in context menu to inactivate the extension",
-      "message": "nCage Inactivate"
+      "message": "Doggr Inactivate"
    },
    "openOptionsInfo": {
       "description": "The option in context menu to activate the extension",
-      "message": "Open options again by using right-click or by clicking nCage 'Options' under "
+      "message": "Open options again by using right-click or by clicking Doggr 'Options' under "
    },
    "optionsHeader": {
       "description": "Title of Options page",
-      "message": "nCage Options"
+      "message": "Doggr Options"
    },
    "optionsPageActivate": {
       "description": "Text shown next to On/Off-button",
-      "message": "nCage is"
+      "message": "Doggr is"
    },
    "optionsPageContextLink": {
       "description": "Text shown next to On/Off-button",
-      "message": "Show \"nCage Inactivate\" on right-click"
+      "message": "Show \"Doggr Inactivate\" on right-click"
    },
    "optionsPageContextLinkActivate": {
       "description": "Text shown next to On/Off-button",
-      "message": "Show \"nCage Activate\" on right-click"
+      "message": "Show \"Doggr Activate\" on right-click"
    }
 }

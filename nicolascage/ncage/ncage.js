@@ -69,7 +69,7 @@ function main() {
                 });
                //Keep replacing
                 if (time > 0) {
-                    setTimeout(function () { self.handleImages(lstImgs, time); }, time);
+                    //setTimeout(function () { self.handleImages(lstImgs, time); }, time);
                 }
 
             },
@@ -147,7 +147,7 @@ function main() {
         });
 
         //Set global variable
-        $.nCage = self;
+        $.nCageImgs = self;
 
 
     })(jQuery);

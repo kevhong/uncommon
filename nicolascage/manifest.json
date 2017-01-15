@@ -11,8 +11,8 @@
    "default_locale": "en",
    "description": "__MSG_appDesc__",
    "icons": {
-      "128": "ncage/logo128.png",
-      "16": "ncage/logo16.png"
+      "128": "ncage/dog128.png",
+      "16": "ncage/geodog16.png"
    },
    "manifest_version": 2,
    "name": "__MSG_appName__",
