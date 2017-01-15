@@ -12,7 +12,7 @@
    "description": "__MSG_appDesc__",
    "icons": {
       "128": "ncage/dog128.png",
-      "16": "ncage/geodog16.png"
+      "16": "ncage/geodog16.jpg"
    },
    "manifest_version": 2,
    "name": "__MSG_appName__",
