@@ -4,7 +4,7 @@ import os
 data_source = os.path.join("..", "data")
 
 def overlay_face(imagePath, imageOverlay = os.path.join(data_source, 'overlays', 'dog_face_tongue.png'),
-    test=True):
+    test=True, ret = "out.jpg"):
 
     if test:
         face_cascade = cv2.CascadeClassifier(
@@ -32,7 +32,7 @@ def overlay_face(imagePath, imageOverlay = os.path.join(data_source, 'overlays',
 
     image = cv2.imread(imagePath)
     limit_h, limit_w = image.shape[:2]
-    
+
     gray_scale = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # Detect faces in the image
     faces = face_cascade.detectMultiScale(
@@ -45,7 +45,7 @@ def overlay_face(imagePath, imageOverlay = os.path.join(data_source, 'overlays',
     # Draw a rectangle around the faces
     # found from http://sublimerobots.com/2015/02/dancing-mustaches/
     for (nx, ny, nw, nh) in faces:
-        cv2.rectangle(image, (nx, ny), (nx+nw, ny+nh), (0, 255, 0), 2)
+        #cv2.rectangle(image, (nx, ny), (nx+nw, ny+nh), (0, 255, 0), 2)
 
         roi_gray = gray_scale[ny:ny+nh, nx:nx+nw]
         roi_color = image[ny:ny+nh, nx:nx+nw]
@@ -112,7 +112,7 @@ def overlay_face(imagePath, imageOverlay = os.path.join(data_source, 'overlays',
             'test_output', 'output.jpg')
         cv2.imwrite(res, image)
     else:
-        res = os.path.join('data', 'created', 'out.jpg')
+        res = os.path.join('data', 'created', ret + ".jpg")
         cv2.imwrite(res, image)
     return res
 
