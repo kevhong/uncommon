@@ -1,0 +1,22 @@
+
+{% extends "layout.html" %} {% block body %}
+
+
+
+<!-- Largely based on http://newspaper-demo.herokuapp.com/ -->
+
+<html lang="en">
+
+    <img src="{{dog_link}}">
+
+</html>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/findController.js') }}"></script>
+
+{% endblock %}
