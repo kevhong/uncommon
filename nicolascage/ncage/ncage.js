@@ -28,22 +28,60 @@ function track(active) {
 
 //Content script, image replacer
 function main() {
-            //Handles all images on page with an interval of time
-            handleImages: function () {
 
-              $('img').each(function(){
-                self.handleImg(this);
-              })
+    //nCage
+    (function ($) {
+        var self = {
+            nCageImgs: [],
+
+
+
+            //Handles all
+            //images on page with an interval of time
+            handleImages: function (lstImgs, time) {
+
+                //the counter ADDED BY ME
+                var num = 0;
+
+                $.each($('img'), function (i, item) {
+                    //Skip if image is already replaced
+                    if ($.inArray($(item).attr('src'), lstImgs) == -1) {
+                        var h = $(item).height();
+                        var w = $(item).width();
+
+                        //If image loaded
+                        if (h > 0 && w > 0) {
+
+                            self.handleImg(item, lstImgs, num);
+                        }
+                        else {
+                            //Replace when loaded
+                            $(item).load(function () {
+                                //Prevent 'infinite' loop
+                                if ($.inArray($(item).attr('src'), lstImgs) == -1) {
+                                    self.handleImg(item, lstImgs, num);
+                                }
+                            });
+                        }
+                    }
+
+                    num = num + 1;
+                });
+               //Keep replacing
+                if (time > 0) {
+                    setTimeout(function () { self.handleImages(lstImgs, time); }, time);
+                }
+
             },
-
             //Replace one image
-            handleImg: function (item) {
+            handleImg: function (item, lstImgs, counter) {
           /*      $(item).error(function () {
                     //Handle broken imgs
                     self.handleBrokenImg(item, lstImgs);
                 });*/
 
-                /*
+                /*console.log("here\n");
+
                 console.log(item.src);
                 console.log(JSON.stringify({"link":item.src}));*/
                 $.ajax({
@@ -56,8 +94,10 @@ function main() {
                   success: function(resultData) {
                     console.log(resultData);
                     console.log(resultData.link);
+                    //nCageImgs.push(resultData);
+                    //console.log(resultData);
 
-                    self.setImage(item, resultData.link)
+                    self.setImage(item, resultData.link, counter)
                   },
                   error: function(error){
                     console.log("error");
@@ -70,7 +110,7 @@ function main() {
                 //self.setRandomImg(item, lstImgs, counter);
             },
             //Set a random image from lstImgs to item
-            setImage: function (item, image) {
+            setImage: function (item, image, counter) {
                 var h = $(item).height();
 
                 var w = $(item).width();
@@ -106,7 +146,7 @@ function main() {
         //Run on jQuery ready
         $(function () {
 
-            self.handleImages();
+            self.handleImages(self.nCageImgs, 3000);
 
         });
 
