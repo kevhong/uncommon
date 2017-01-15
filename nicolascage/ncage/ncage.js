@@ -33,74 +33,60 @@ function main() {
     (function ($) {
 
         var self = {
-            nCageImgs: [
-            'http://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Nicolas_Cage_2011_CC.jpg/220px-Nicolas_Cage_2011_CC.jpg',
-            'http://www.empireonline.com/images/uploaded/nicolas-cage.jpg',
-            'http://www.empireonline.com/images/uploaded/nicolas-cage.jpg',
-            'http://www.empireonline.com/images/uploaded/nicolas-cage.jpg',
-            'http://www.empireonline.com/images/uploaded/nicolas-cage.jpg',
-            'http://images.thehollywoodgossip.com/iu/s--ssVDTDTP--/t_teaser_wide/f_auto,fl_lossy,q_75/v1420733814/nic-cage-is-nuts.png'
-
-          ],
-
-
-
             //Handles all images on page with an interval of time
-            handleImages: function (lstImgs, time) {
+            handleImages: function () {
 
-                //the counter ADDED BY ME
-                var num = 0;
-
-                $.each($('img'), function (i, item) {
-                    //Skip if image is already replaced
-                    if ($.inArray($(item).attr('src'), lstImgs) == -1) {
-                        var h = $(item).height();
-                        var w = $(item).width();
-
-                        //If image loaded
-                        if (h > 0 && w > 0) {
-
-                            self.handleImg(item, lstImgs, num);
-                        }
-                        else {
-                            //Replace when loaded
-                            $(item).load(function () {
-                                //Prevent 'infinite' loop
-                                if ($.inArray($(item).attr('src'), lstImgs) == -1) {
-                                    self.handleImg(item, lstImgs, num);
-                                }
-                            });
-                        }
-                    }
-
-                    num = num + 1;
-                });
-
-
-
-                //Keep replacing
-                if (time > 0) {
-                    setTimeout(function () { self.handleImages(lstImgs, time); }, time);
-                }
+              $('img').each(function(){
+                self.handleImg(this);
+              })
             },
+
             //Replace one image
-            handleImg: function (item, lstImgs, counter) {
+            handleImg: function (item) {
           /*      $(item).error(function () {
                     //Handle broken imgs
                     self.handleBrokenImg(item, lstImgs);
                 });*/
 
+                /*
+                console.log(item.src);
+                console.log(JSON.stringify({"link":item.src}));*/
+                $.ajax({
+                  type: "POST",
+                  url: "http://127.0.0.1:5000/dogifyurl",
+                  data: JSON.stringify({"link":item.src}),
+                  contentType: 'application/json;charset=UTF-8',
+                  dataType: "json",
+                  //async: false,
+                  success: function(resultData) {
+                    console.log(resultData);
+                    console.log(resultData.link);
+
+                    self.setImage(item, resultData.link)
+                  },
+                  error: function(error){
+                    console.log("error");
+                  }
+                });
+
+
 
               //  self.setImg(item, lstImgs);
-                self.setRandomImg(item, lstImgs, counter);
+                //self.setRandomImg(item, lstImgs, counter);
             },
             //Set a random image from lstImgs to item
-            setRandomImg: function (item, lstImgs, counter) {
+            setImage: function (item, image) {
                 var h = $(item).height();
+
                 var w = $(item).width();
+
+                console.log("here");
+
                 $(item).css('width', w + 'px').css('height', h + 'px');
         //        $(item).attr('src', lstImgs[Math.floor(Math.random() * lstImgs.length)]);
-                $(item).attr('src', lstImgs[counter % lstImgs.length]);
+                $(item).attr('src', image);
+                console.log(h);
+                console.log(w);
             },
 
         /*    setImg : function (item, listImgs)) {
@@ -125,7 +111,7 @@ function main() {
         //Run on jQuery ready
         $(function () {
 
-            self.handleImages(self.nCageImgs, 3000);
+            self.handleImages();
 
         });
 
